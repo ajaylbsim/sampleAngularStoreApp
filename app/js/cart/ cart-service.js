@@ -1,5 +1,6 @@
 angular.module('app').service('CartService', ['$http', function($http){
 	var cart = [];
+	var baseUrl = "http://localhost:3000";
 	var that = this;
 	this.moveToCart=function(item){
 		cart.push(item);
@@ -10,8 +11,12 @@ angular.module('app').service('CartService', ['$http', function($http){
 		cart.splice(0,1);
 		console.log(cart);
 	};
+
 	this.getCart = function(){
-		return cart;
+	return $http.get(baseUrl+"/item/cart",function(res){});
+	};
+	this.getList = function(){
+	return $http.get(baseUrl+"/item/list",function(res){});
 	};
 	this.findById = function(id){
 		//console.log();
@@ -26,8 +31,7 @@ angular.module('app').service('CartService', ['$http', function($http){
 		return cart.length;
 	};
 	this.updateOnAdd = function(item){
-		console.log(item);
-$http.post("http://localhost:3000/item",item,function(res){});
+     $http.post(baseUrl+"/item",item,function(res){});
 	};
 
 }]);

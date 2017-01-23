@@ -33,9 +33,14 @@ app.get('/', function (req, res) {
   res.end("/index.html");
 })
 
-app.get('/item', function (req, res) {
+app.get('/item/cart', function (req, res) {
  res.send(cart);
 })
+
+app.get('/item/list', function (req, res) {
+ res.send(cart);
+})
+
 
 app.post('/item', function (req, res) {
 

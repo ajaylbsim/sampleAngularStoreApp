@@ -1,12 +1,17 @@
-angular.module( 'list', [] ).config( function( $stateProvider ) {
+angular.module( 'list', [] ).config( function( $stateProvider) {
 	$stateProvider.state( 'home.list', {
 		url: '/list',
 		templateUrl: 'list/list-tpl.tpl',
-		controller: 'ListCtrl'
+		controller: 'ListCtrl',
+		resolve:{
+			data:function(CartService){
+				return CartService.getCart();
+			}
+		}
 	} );
-} ).controller( 'ListCtrl', function( $scope,CartService,AppUtils) {
+} ).controller( 'ListCtrl', function( $scope,CartService,AppUtils,data) {
 	$scope.listCtrl = {
-		fruits:[],
+		fruits:data.data,
 		cartItemCount:CartService.getCount()
 	};
 
