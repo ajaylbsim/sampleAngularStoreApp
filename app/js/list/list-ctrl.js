@@ -12,7 +12,9 @@ angular.module( 'list', [] ).config( function( $stateProvider) {
 } ).controller( 'ListCtrl', function( $scope,CartService,AppUtils,data) {
 	$scope.listCtrl = {
 		fruits:data.data,
-		cartItemCount:CartService.getCount()
+		cartItemCount:CartService.getCount(),
+imgPath:'http://lorempixel.com/60/60/'
+
 	};
 
 $scope.removeFromCart= removeFromCart;
@@ -37,4 +39,18 @@ function addToCart(item){
 
 $scope.listCtrl.cartItemCount =  CartService.getCount();
 }
+
+///////////materila content///////
+
+  $scope.todos = [];
+  for (var i = 0; i < 10; i++) {
+    $scope.todos.push({
+      // face: imagePath,
+      what: "Apple",
+      // who: "Min Li Chan",
+      notes: "Eat one every day.",
+      price:"$25"
+
+    });
+  }
 } );

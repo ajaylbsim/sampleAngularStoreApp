@@ -1,50 +1,43 @@
 
-<style type="text/css" media="screen">
-table#newtbl, td#newtbl{
-	font:100% Arial, Helvetica, sans-serif;
-}
-table#newtbl{width:100%;border-collapse:collapse;margin:1em 0;}
-th#newtbl, td#newtbl{text-align:left;padding:.5em;border:1px solid #fff;}
-th#newtbl{background:#328aa4 url(tr_back.gif) repeat-x;color:#fff;}
-td#newtbl{background:#e5f1f4;}
+      <div layout="column" style="height:600px" ng-cloak>
 
-/* tablecloth styles */
-
-tr.even td#newtbl{background:#e5f1f4;}
-tr.odd td#newtbl{background:#f8fbfc;}
-
-th.over, tr.even th.over, tr.odd th.over{background:#4a98af;}
-th.down, tr.even th.down, tr.odd th.down{background:#bce774;}
-th.selected, tr.even th.selected, tr.odd th.selected{}
-.added{
-  background-color: red
-}
-</style>
-<div>Cart Item count {{listCtrl.cartItemCount}} <span ui-sref="home.cart">view cart</span> </div>
-	
-</div>
- 
-      <table>
-        <thead>
-           <tr>
-                <th data-field="price">Search</th>
-                <th data-field="price"><input type="text" ng-model="search" /></th>
-          </tr>
-          <tr>
-              <th data-field="name">Item Name</th>
-              <th data-field="price">Item Price</th>
-                <th data-field="price">Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h3>
+              <span>Angular Store</span>
+            </h3>
+          </div>
           
-          <tr ng-repeat="fruit in listCtrl.fruits |filter: { name: search } track by $index ">
-            <td ng-class="fruit.inCart">{{fruit.name}} -- {{fruit.inCart}} </td>
-                       <td>${{fruit.price}}</td>
-            <td ng-class="fruit.inCart" ng-click="addToCart(fruit);fruit.inCart= true"> <button>Add to cart</button></td>
-          
-          </tr>
-        
-        </tbody>
-      </table>
+        </md-toolbar>
+
+        <md-content flex layout-margin>
+            <div>Welcome to the angular store.</div>
+            <div>Please select the products you wand and add them to cart.</div>
+            <div>When you are done.click the cart icon for review your order.</div>
+          <md-input-container>
+            <label>Search</label>
+            <input>
+          </md-input-container>
+          <md-list>
+
+            <md-list-item class="md-3-line" ng-repeat="item in  listCtrl.fruits |filter: { name: search } track by $index">
+              <img ng-src="{{listCtrl.imgPath}}" class="md-avatar">
+
+              <div class="md-list-item-text">
+                <h3 class="blue">{{item.name}}</h3>
+                <h4>..............</h4>
+
+                <!-- <p>
+                  {{item.notes}}
+                </p> -->
+              </div>
+              <div layout-padding class="vertical-divider margin-auto">{{item.price}}</div>
+              <div class="margin-auto"><md-button class="md-primary" ng-click="addToCart(item);item.inCart= true">add to cart</md-button>  </div>
+              <md-divider inset></md-divider>
+            </md-list-item>
+
+          </md-list>
+
+        </md-content>
+
+      </div>
