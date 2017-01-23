@@ -5,7 +5,9 @@ app/app/css/
 
 /node_modules/
 /npm-debug.log
-/static
+/static/js
+/static/css
+
 /appDetail/css
 /.idea/
 
