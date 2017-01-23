@@ -39,10 +39,10 @@ th.selected, tr.even th.selected, tr.odd th.selected{}
 
         <tbody>
           
-          <tr ng-repeat="fruit in listCtrl.fruits |filter: { name: search,price:search } track by $index ">
-            <td ng-class="fruit.status">{{fruit.name}}</td>
+          <tr ng-repeat="fruit in listCtrl.fruits |filter: { name: search } track by $index ">
+            <td ng-class="fruit.inCart">{{fruit.name}} -- {{fruit.inCart}} </td>
                        <td>${{fruit.price}}</td>
-            <td ng-class="fruit.status" ng-click="addToCart(fruit);fruit.status='added'"> <button>Add to cart</button></td>
+            <td ng-class="fruit.inCart" ng-click="addToCart(fruit);fruit.inCart= true"> <button>Add to cart</button></td>
           
           </tr>
         

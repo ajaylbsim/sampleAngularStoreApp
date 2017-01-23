@@ -9,7 +9,6 @@ angular.module('app').service('CartService', ['$http', function($http){
 
 	this.removeFromCart=function(){
 		cart.splice(0,1);
-		console.log(cart);
 	};
 
 	this.getCart = function(){

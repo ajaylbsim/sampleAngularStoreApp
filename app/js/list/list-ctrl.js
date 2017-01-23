@@ -5,7 +5,7 @@ angular.module( 'list', [] ).config( function( $stateProvider) {
 		controller: 'ListCtrl',
 		resolve:{
 			data:function(CartService){
-				return CartService.getCart();
+				return CartService.getList();
 			}
 		}
 	} );
@@ -28,7 +28,8 @@ function removeFromCart(item,index){
 
 function addToCart(item){
 	if(!CartService.findById(item.id)){
-	AppUtils.removeFromArrayByField(angular.copy($scope.listCtrl.fruits),"id",item);
+	//AppUtils.removeFromArrayByField(angular.copy($scope.listCtrl.fruits),"id",item);
+	item.inCart =true;
 	CartService.moveToCart(item);
 }else{
 	alert("Already added");

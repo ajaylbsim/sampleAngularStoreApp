@@ -5,7 +5,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(express.static('./static'))
 
-var cart = [
+var list = [
 		{
 			name:"Brinjal",
 			price:"$34",
@@ -34,17 +34,29 @@ app.get('/', function (req, res) {
 })
 
 app.get('/item/cart', function (req, res) {
- res.send(cart);
+	var cartItem = [];
+	for (var i = list.length - 1; i >= 0; i--) {
+		if(list[i].inCart){
+			cartItem.push(list[i]);
+		}
+	};
+
+ res.send(cartItem);
 })
 
 app.get('/item/list', function (req, res) {
- res.send(cart);
+ res.send(list);
 })
 
 
 app.post('/item', function (req, res) {
-
+	for (var i = list.length - 1; i >= 0; i--) {
+		if(list[i].id == req.body.id){
+			list[i].inCart =true;
+		}
+	};
 console.log("received item ",req.body);
+
   res.send(true);
 })
 
